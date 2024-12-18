@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/tur11ng/const-ciphers"
 repository = "https://github.com/tur11ng/const-ciphers"
 keywords = ["const", "encryption", "ciphers", "aes", "payload"]
-categories = ["category::cryptography"]
+categories = ["Cryptography"]
 
 [dependencies]
 const_for = "0.1.5"
