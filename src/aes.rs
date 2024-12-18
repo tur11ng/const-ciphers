@@ -608,11 +608,7 @@ impl Aes {
         result
     }
 
-    fn encrypt_cbc<const N: usize>(
-        plaintext: &[u8; N],
-        key: &[u8; 16],
-        iv: &[u8; 16],
-    ) -> [u8; N] {
+    fn encrypt_cbc<const N: usize>(plaintext: &[u8; N], key: &[u8; 16], iv: &[u8; 16]) -> [u8; N] {
         if N % 16 != 0 {
             panic!("Invalid plaintext length for CBC.");
         }
@@ -642,11 +638,7 @@ impl Aes {
         result
     }
 
-    fn decrypt_cbc<const N: usize>(
-        ciphertext: &[u8; N],
-        key: &[u8; 16],
-        iv: &[u8; 16],
-    ) -> [u8; N] {
+    fn decrypt_cbc<const N: usize>(ciphertext: &[u8; N], key: &[u8; 16], iv: &[u8; 16]) -> [u8; N] {
         let mut result = [0u8; N];
         let mut prev = *iv;
         let mut i = 0;
@@ -672,11 +664,7 @@ impl Aes {
         result
     }
 
-    fn encrypt_ctr<const N: usize>(
-        plaintext: &[u8; N],
-        key: &[u8; 16],
-        iv: &[u8; 12],
-    ) -> [u8; N] {
+    fn encrypt_ctr<const N: usize>(plaintext: &[u8; N], key: &[u8; 16], iv: &[u8; 12]) -> [u8; N] {
         let mut ciphertext = [0u8; N];
         let mut counter = Self::ctr_init(iv);
 
@@ -694,11 +682,7 @@ impl Aes {
         ciphertext
     }
 
-    fn decrypt_ctr<const N: usize>(
-        ciphertext: &[u8; N],
-        key: &[u8; 16],
-        iv: &[u8; 12],
-    ) -> [u8; N] {
+    fn decrypt_ctr<const N: usize>(ciphertext: &[u8; N], key: &[u8; 16], iv: &[u8; 12]) -> [u8; N] {
         // CTR decryption is identical to encryption
         Self::encrypt_ctr(ciphertext, key, iv)
     }

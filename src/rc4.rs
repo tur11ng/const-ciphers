@@ -57,10 +57,7 @@ impl Rc4Const {
 pub struct Rc4 {}
 
 impl Rc4 {
-    pub fn encrypt<const N: usize, const K: usize>(
-        plaintext: &[u8; N],
-        key: &[u8; K],
-    ) -> [u8; N] {
+    pub fn encrypt<const N: usize, const K: usize>(plaintext: &[u8; N], key: &[u8; K]) -> [u8; N] {
         if K == 0 {
             panic!("Key cannot be empty");
         }
@@ -74,10 +71,7 @@ impl Rc4 {
         const_for!(i in 0..256 => {
             j = (j + s[i] as usize + key[i % K] as usize) % 256;
 
-            // Manual swap
-            let tmp = s[i];
-            s[i] = s[j];
-            s[j] = tmp;
+            s.swap(i, j);
         });
 
         let mut i = 0usize;
@@ -88,10 +82,7 @@ impl Rc4 {
             i = (i + 1) % 256;
             j = (j + s[i] as usize) % 256;
 
-            // Manual swap
-            let tmp = s[i];
-            s[i] = s[j];
-            s[j] = tmp;
+            s.swap(i, j);
 
             let k = s[(s[i] as usize + s[j] as usize) % 256];
             ciphertext[n] = plaintext[n] ^ k;
@@ -100,10 +91,7 @@ impl Rc4 {
         ciphertext
     }
 
-    pub fn decrypt<const N: usize, const K: usize>(
-        ciphertext: &[u8; N],
-        key: &[u8; K],
-    ) -> [u8; N] {
+    pub fn decrypt<const N: usize, const K: usize>(ciphertext: &[u8; N], key: &[u8; K]) -> [u8; N] {
         Self::encrypt(ciphertext, key)
     }
 }

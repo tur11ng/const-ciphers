@@ -30,10 +30,7 @@ impl XorConst {
 pub struct Xor {}
 
 impl Xor {
-    pub fn encrypt<const N: usize, const K: usize>(
-        plaintext: &[u8; N],
-        key: &[u8; K],
-    ) -> [u8; N] {
+    pub fn encrypt<const N: usize, const K: usize>(plaintext: &[u8; N], key: &[u8; K]) -> [u8; N] {
         if K == 0 {
             panic!("Key cannot be empty");
         }
@@ -46,14 +43,10 @@ impl Xor {
         ciphertext
     }
 
-    pub fn decrypt<const N: usize, const K: usize>(
-        ciphertext: &[u8; N],
-        key: &[u8; K],
-    ) -> [u8; N] {
+    pub fn decrypt<const N: usize, const K: usize>(ciphertext: &[u8; N], key: &[u8; K]) -> [u8; N] {
         Self::encrypt(ciphertext, key)
     }
 }
-
 
 #[cfg(test)]
 mod tests {
