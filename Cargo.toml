@@ -1,7 +1,14 @@
 [package]
-name = "const_ciphers"
-version = "0.1.0"
+name = "const-ciphers"
+version = "0.0.1"
 edition = "2021"
+license = "MIT"
+description = "Ciphers implemented as constant expressions in Rust for use in payload generation. Not for regular use."
+readme = "README.md"
+homepage = "https://github.com/tur11ng/const-ciphers"
+repository = "https://github.com/tur11ng/const-ciphers"
+keywords = ["const", "encryption", "ciphers", "aes", "payload"]
+categories = ["category::cryptography"]
 
 [dependencies]
 const_for = "0.1.5"

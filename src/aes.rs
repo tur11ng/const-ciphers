@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use const_for::const_for;
 
 pub enum AesMode {
@@ -11,15 +9,11 @@ pub enum AesMode {
 pub struct AesConst {}
 
 impl AesConst {
-    pub fn encrypt<const N: usize>(
-        plaintext: &[u8; N],
-        key: &[u8; 16],
-        mode: &AesMode,
-    ) -> [u8; N] {
+    pub fn encrypt<const N: usize>(plaintext: &[u8; N], key: &[u8; 16], mode: &AesMode) -> [u8; N] {
         match mode {
             AesMode::ECB => Self::encrypt_ecb(plaintext, key),
-            AesMode::CBC { iv } => Self::encrypt_cbc(plaintext, key, &iv),
-            AesMode::CTR { iv } => Self::encrypt_ctr(plaintext, key, iv)
+            AesMode::CBC { iv } => Self::encrypt_cbc(plaintext, key, iv),
+            AesMode::CTR { iv } => Self::encrypt_ctr(plaintext, key, iv),
         }
     }
 
@@ -30,8 +24,8 @@ impl AesConst {
     ) -> [u8; N] {
         match mode {
             AesMode::ECB => Self::decrypt_ecb(ciphertext, key),
-            AesMode::CBC { iv } => Self::decrypt_cbc(ciphertext, key, &iv),
-            AesMode::CTR { iv } => Self::decrypt_ctr(ciphertext, key, iv)
+            AesMode::CBC { iv } => Self::decrypt_cbc(ciphertext, key, iv),
+            AesMode::CTR { iv } => Self::decrypt_ctr(ciphertext, key, iv),
         }
     }
 
@@ -503,7 +497,7 @@ impl AesConst {
 
 #[cfg(test)]
 mod tests {
-    use super::{AesMode, AesConst};
+    use super::{AesConst, AesMode};
 
     #[test]
     fn test_single_block_mode() {
@@ -513,10 +507,7 @@ mod tests {
         let encrypted = AesConst::encrypt_block(&plaintext, &key);
         let decrypted = AesConst::decrypt_block(&encrypted, &key);
 
-        assert_eq!(
-            decrypted, plaintext,
-            "Single block mode test failed"
-        );
+        assert_eq!(decrypted, plaintext, "Single block mode test failed");
     }
 
     #[test]
