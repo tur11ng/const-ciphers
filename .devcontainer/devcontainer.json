@@ -1,0 +1,17 @@
+{
+    "name": "Rust Devcontainer",
+    "image": "ghcr.io/tur11ng/rust-devcontainer:v0.0.5",
+    "customizations": {
+        "vscode": {
+        "extensions": [
+            "rust-lang.rust-analyzer",
+            "tamasfe.even-better-toml",
+            "npxms.hide-gitignored",
+            "swellaby.vscode-rust-test-adapter",
+            "JScearcy.rust-doc-viewer",
+            "vadimcn.vscode-lldb",
+            "ms-azuretools.vscode-docker"
+        ]}
+    },
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
