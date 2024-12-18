@@ -9,7 +9,7 @@ pub enum AesMode {
 pub struct AesConst {}
 
 impl AesConst {
-    pub fn encrypt<const N: usize>(plaintext: &[u8; N], key: &[u8; 16], mode: &AesMode) -> [u8; N] {
+    pub const fn encrypt<const N: usize>(plaintext: &[u8; N], key: &[u8; 16], mode: &AesMode) -> [u8; N] {
         match mode {
             AesMode::ECB => Self::encrypt_ecb(plaintext, key),
             AesMode::CBC { iv } => Self::encrypt_cbc(plaintext, key, iv),
