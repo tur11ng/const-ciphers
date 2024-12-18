@@ -1,6 +1,6 @@
 [package]
 name = "const-ciphers"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 license = "MIT"
 description = "Ciphers implemented as constant expressions in Rust for use in payload generation. Not for regular use."
