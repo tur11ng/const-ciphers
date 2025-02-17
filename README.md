@@ -26,5 +26,5 @@ const fn example() {
 
 <div style="border-left: 4px solid red; padding-left: 8px; color: red;">
   <strong>⚠️ Caution</strong><br>
-  <span style="color: black;">Not for cryptographic use. No cryptographic properties guaranteed. Only use for payload generation.</span>
+  <span style="color: black;">Not for regular/cryptographic use. No cryptographic properties guaranteed. Only use for payload generation.</span>
 </div>
